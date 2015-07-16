@@ -1,0 +1,18 @@
+{
+    "pg_datasource": {
+        "connection": {
+            "drivername": "postgres",
+            "host":       "localhost",
+            "port":       "5432",
+            "username":   "user",
+            "password":   "password",
+            "database":   "dbname"
+        },
+        "pgbouncer": {
+            "host":       "localhost",
+            "port":       "6432",
+            "username":   "user",
+            "database":   "dbname"
+        }
+    }
+}
