@@ -59,7 +59,7 @@ def track_serializer(instance):
     track_dict['desc']         = instance.desc
     track_dict['src']          = instance.src
     track_dict['number']       = instance.number
-    track_dict['wkb_geometry'] = json.loads(
+    track_dict['geom'] = json.loads(
         Session.scalar(st_asgeojson(instance.wkb_geometry)))
     logger.debug("Serialized track: %s", track_dict)
     return track_dict
