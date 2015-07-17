@@ -48,8 +48,8 @@ class TrackInfo(Base):
     start_lat     = Column(Float)
     end_lon       = Column(Float)
     end_lat       = Column(Float)
-    start_geom    = Column(Geometry(geometry_type='POINT', srid=4326))
-    end_geom      = Column(Geometry(geometry_type='POINT', srid=4326))
+    #start_geom    = Column(Geometry(geometry_type='POINT', srid=4326))
+    #end_geom      = Column(Geometry(geometry_type='POINT', srid=4326))
 
 def track_serializer(instance):
     track_dict = {}
@@ -66,25 +66,25 @@ def track_serializer(instance):
 
 def trackinfo_serializer(instance):
     ti_dict = {}
-    ti_dict['ID']                  = instance.ogc_fid
-    ti_dict['Segments']            = instance.segments
-    ti_dict['2D length']           = instance.length_2d
-    ti_dict['3D length']           = instance.length_3d
-    ti_dict['Moving time']         = str(instance.moving_time)
-    ti_dict['Stopped time']        = str(instance.stopped_time)
-    ti_dict['Max speed']           = instance.max_speed
-    ti_dict['Uphill distance']     = instance.uphill
-    ti_dict['Downhill distance']   = instance.downhill
-    ti_dict['Started time']        = str(instance.started)
-    ti_dict['Ended time']          = str(instance.ended)
-    ti_dict['Points']              = instance.points
-    ti_dict['Started longitude']   = instance.start_lon
-    ti_dict['Started latitute']    = instance.start_lat
-    ti_dict['Ended longitude']     = instance.end_lon
-    ti_dict['Ended latitude']      = instance.end_lat
-    ti_dict['Start point GeoJSON'] = json.loads(
-        Session.scalar(st_asgeojson(instance.start_geom)))
-    ti_dict['End point GeoJSON']   = json.loads(
-        Session.scalar(st_asgeojson(instance.end_geom)))
+    ti_dict['ID']           = instance.ogc_fid
+    ti_dict['Segments']     = instance.segments
+    ti_dict['2D length']    = instance.length_2d
+    ti_dict['3D length']    = instance.length_3d
+    ti_dict['Moving time']  = str(instance.moving_time)
+    ti_dict['Stopped time'] = str(instance.stopped_time)
+    ti_dict['Max speed']    = instance.max_speed
+    ti_dict['Uphill']       = instance.uphill
+    ti_dict['Downhill']     = instance.downhill
+    ti_dict['Started at']   = str(instance.started)
+    ti_dict['Ended at']     = str(instance.ended)
+    ti_dict['Points']       = instance.points
+    ti_dict['Start lon']    = instance.start_lon
+    ti_dict['Start lat']    = instance.start_lat
+    ti_dict['End lon']      = instance.end_lon
+    ti_dict['End lat']      = instance.end_lat
+    #ti_dict['Start point GeoJSON'] = json.loads(
+        #Session.scalar(st_asgeojson(instance.start_geom)))
+    #ti_dict['End point GeoJSON']   = json.loads(
+        #Session.scalar(st_asgeojson(instance.end_geom)))
     logger.debug("Serialized trackinfo: %s", ti_dict)
     return ti_dict
