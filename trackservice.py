@@ -29,11 +29,11 @@ from flask import Flask
 from flask_cors import CORS
 from tracksdb import Session, Track, TrackInfo, \
     track_serializer, trackinfo_serializer
-import flask.ext.restless
+import flask_restless
 
 app = Flask(__name__)
 cors = CORS(app)
-manager = flask.ext.restless.APIManager(app, session=Session)
+manager = flask_restless.APIManager(app, session=Session)
 
 track_blueprint = manager.create_api(
     Track,
