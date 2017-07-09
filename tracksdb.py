@@ -22,6 +22,7 @@ Session = scoped_session(sessionmaker(engine))
 class Track(Base):
     __tablename__ = 'tracks'
     ogc_fid       = Column(Integer, primary_key=True)
+    gpx_id        = Column(Integer)
     name          = Column(String)
     cmt           = Column(String)
     desc          = Column(String)
@@ -33,6 +34,7 @@ class Track(Base):
 class TrackInfo(Base):
     __tablename__ = 'trackinfo'
     ogc_fid       = Column(Integer, primary_key=True)
+    gpx_id        = Column(Integer)
     segments      = Column(Integer)
     length_2d     = Column(Float)
     length_3d     = Column(Float)
@@ -54,6 +56,7 @@ class TrackInfo(Base):
 def track_serializer(instance):
     track_dict = {}
     track_dict['ID']          = instance.ogc_fid
+    track_dict['GPX ID']      = instance.gpx_id
     track_dict['Name']        = instance.name
     track_dict['CMT']         = instance.cmt
     track_dict['Description'] = instance.desc
@@ -67,6 +70,7 @@ def track_serializer(instance):
 def trackinfo_serializer(instance):
     ti_dict = {}
     ti_dict['ID']           = instance.ogc_fid
+    ti_dict['GPX ID']       = instance.gpx_id
     ti_dict['Segments']     = instance.segments
     ti_dict['2D length']    = instance.length_2d
     ti_dict['3D length']    = instance.length_3d
